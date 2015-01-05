@@ -63,12 +63,12 @@ App.Collections.Reasons = Backbone.Collection.extend({
 App.Views.Reason = Backbone.View.extend({
 	template: _.template($('#reason-template').html()),
 	tagName: 'tr',
-	attributes: function() {
+/*	attributes: function() {
 		return {
 			'data-toggle': "modal",
 			'data-target': '#changeReasonModal'
 		};
-	},
+	}, */
 	$container: null,
 	initialize: function(options) {
 		_.bindAll(this, 'render', 'insert');
