@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<META charset="utf-8">
+	<title>Backbone.js with IndexedDB and Dexie.js</title>
+	<link href="style/css/bootstrap.min.css" rel="stylesheet">
+	<link href="style/main.css" rel="stylesheet">
+</head>
+<body>
+	<div style="padding:10px;background:#EEEEEE">
+		<h1 style="margin-top:0px;">Backbone.js with IndexedDB and Dexie.js</h1>
+		<p>This demo application displays the use of Backbone.js with IndexedDB and Dexie.js to build a fully client-side application.
+	</div>
+	<div class="container-fluid">
+		<div class="row" style="padding-top:10px;">
+			<div class="col-lg-4 col-md-4" id="add-reason-container">
+			</div>
+			<div class="col-lg-4 col-md-4" id="reasons-container">
+			</div>
+		</div>
+	</div>
+
+	<!--Bootstrap Modal-->
+	<div class="modal" id="changeReasonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Begin Templates-->
+
+	<script type="text/template" id="reason-template">
+		<td><%= reasonText %>(key#<%= id %>)</td>
+		<td style="width:30px;"><span style="display:none;" class="glyphicon glyphicon-ok"></span></td>
+		<td style="width:30px;"><a href="#" title="Delete" class="deleteReason"><span class="glyphicon glyphicon-remove"></span></a></td>
+	</script>
+
+	<script type="text/template" id="reasons-template">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Reasons</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="reason-container">
+			</tbody>
+		</table>
+	</script>
+
+	<script type="text/template" id="add-reason-template">
+		<form>
+			<div class="form-group">
+				<label for="add-reason-textarea">Why use IndexedDB with Dexie.js?</label>
+				<textarea type="textarea" class="form-control" id="add-reason-textarea" placeholder="Please enter a reason."></textarea>
+			</div>
+			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Save Record</button>
+		</form>
+	</script>
+
+	<!--End Templates-->
+
+	<script type="text/javascript" src="script/deps.js"></script>
+	<script type="text/javascript" src="style/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="script/main.js"></script>
+</body>
+</html>
