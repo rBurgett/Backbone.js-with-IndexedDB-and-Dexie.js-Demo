@@ -10,7 +10,8 @@ var App = {
 	Views: {},
 	Reasons: {},
 	ReasonsView: {},
-	AddReasonView: {}
+	AddReasonView: {},
+	ChangeReasonView: {}
 };
 
 /**************************************************
@@ -120,6 +121,18 @@ App.Views.AddReason = Backbone.View.extend({
 	}
 });
 
+App.Views.ChangeReason = Backbone.View.extend({
+	template: _.template($('#change-reason-template').html()),
+	el: $('#change-reason-container'),
+	initialize: function() {
+		_.bindAll(this, 'render');
+	},
+	render: function() {
+		this.$el.html(this.template());
+		return this;
+	}
+});
+
 /**************************************************
  *************************************************/
 
@@ -165,6 +178,8 @@ $(document).ready(function () {
 			App.Reasons.add(newReason);
 			App.AddReasonView.$('#add-reason-textarea').val('');
 		});
+		App.ChangeReasonView = new App.Views.ChangeReason();
+		App.ChangeReasonView.render();
 
 		App.ReasonsView = new App.Views.Reasons();
 		App.ReasonsView.render();
