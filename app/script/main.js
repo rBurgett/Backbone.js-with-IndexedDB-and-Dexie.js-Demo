@@ -84,9 +84,15 @@ App.Views.Reason = Backbone.View.extend({
 	insert: function() {
 		this.$container.append(this.$el);
 	},
-	events: {'click .deleteReason': 'deleteReason'},
+	events: {
+		'click .deleteReason': 'deleteReason',
+		'click .changeReason': 'changeReason'
+	},
 	deleteReason: function() {
 		App.Reasons.remove(this.model);
+	},
+	changeReason: function() {
+		alert('This works!');
 	}
 });
 
