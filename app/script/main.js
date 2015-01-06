@@ -36,14 +36,15 @@ var App = {
  *     but writes to indexedDB on the client's computer rather than to a DB on a server.
  * The first parameter is a string of a standard CRUD method (create, read, update, delete)
  * The second is an Backbone model object.
+ * The third is an object
  */
 
-Backbone.sync = function(method, model) {
+Backbone.sync = function(method, model, options) {
 	switch(method) {
 		case 'create':		//called by the 'add' listener on the model
 
 			/*
-			 * I added a 'dbCollection' property to my models which refers to the indexedDB collection
+			 * The dbCollection property in the options parameter refers to the indexedDB collection
 			 *     which the data is being stored in.
 			 *
 			 * You will also notice that I used Underscore to omit the 'id' attribute of each model.
@@ -56,15 +57,15 @@ Backbone.sync = function(method, model) {
 			 *     method to return the key to Backbone so it can update the model's id to match the DB.
 			 */
 
-			App.db[model.dbCollection()].add(_.omit(model.attributes, 'id')).then(function(key) {
+			App.db[options.dbCollection].add(_.omit(model.attributes, 'id')).then(function(key) {
 				model.set('id', key);
 			});
 			break;
 		case 'update':		//called by the 'change' listener on the model
-			App.db[model.dbCollection()].update(model.get('id'), _.omit(model.attributes, 'id'));
+			App.db[options.dbCollection].update(model.get('id'), _.omit(model.attributes, 'id'));
 			break;
 		case 'delete':		//called by the 'remove' listener on the model
-			App.db[model.dbCollection()].delete(model.id);
+			App.db[options.dbCollection].delete(model.id);
 			break;
 	}
 };
@@ -77,9 +78,6 @@ App.Models.Reason = Backbone.Model.extend({
 		id: '',
 		reasonText: '',
 		date: ''
-	},
-	dbCollection: function() {		//This tells Backbone.sync() what collection in the DB the model should be stored in
-		return 'reasons';
 	},
 	initialize: function(attributes) {
 		return this;
@@ -234,15 +232,15 @@ $(document).ready(function () {
 
 		App.Reasons.on({
 			add: function (model) {
-				model.sync('create', model);		//This calls Backbone.sync() to create a new DB entry
+				model.sync('create', model, {dbCollection: 'reasons'});		//This calls Backbone.sync() to create a new DB entry
 				App.ReasonsView.render();
 			},
 			remove: function (model) {
-				model.sync('delete', model);		//This calls Backbone.sync() to delete a DB entry
+				model.sync('delete', model, {dbCollection: 'reasons'});		//This calls Backbone.sync() to delete a DB entry
 				App.ReasonsView.render();
 			},
 			change: function (model) {
-				model.sync('update', model);		//This calls Backbone.sync() to update a DB entry
+				model.sync('update', model, {dbCollection: 'reasons'});		//This calls Backbone.sync() to update a DB entry
 				App.ReasonsView.render();
 			}
 		});
