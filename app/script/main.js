@@ -92,7 +92,10 @@ App.Views.Reason = Backbone.View.extend({
 		App.Reasons.remove(this.model);
 	},
 	changeReason: function() {
-		alert('This works!');
+		var changeReasonView = new App.Views.ChangeReason({
+			model: this.model
+		});
+		changeReasonView.render();
 	}
 });
 
@@ -133,8 +136,8 @@ App.Views.ChangeReason = Backbone.View.extend({
 	initialize: function() {
 		_.bindAll(this, 'render');
 	},
-	render: function() {
-		this.$el.html(this.template());
+	render: function(model) {
+		this.$el.html(this.template(this.model.attributes));
 		return this;
 	}
 });
@@ -184,8 +187,6 @@ $(document).ready(function () {
 			App.Reasons.add(newReason);
 			App.AddReasonView.$('#add-reason-textarea').val('');
 		});
-		App.ChangeReasonView = new App.Views.ChangeReason();
-		App.ChangeReasonView.render();
 
 		App.ReasonsView = new App.Views.Reasons();
 		App.ReasonsView.render();
