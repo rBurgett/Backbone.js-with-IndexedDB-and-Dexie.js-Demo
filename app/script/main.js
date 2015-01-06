@@ -248,18 +248,34 @@ $(document).ready(function () {
 		if (App.Reasons.length === 0) {
 			App.Reasons.add([
 				{
-					reasonText: "Here is a reason!",
+					reasonText: "IndexedDB was specifically designed for storing large amounts of data on the client's computer.",
 					date: new Date().getTime()
 				},
 				{
-					reasonText: "Here is another reason!",
+					reasonText: "Using the Dexie.js library it is very easy to access indexedDB's powerful API and all browser inconsistencies are abstracted away.",
 					date: new Date().getTime()
 				},
 				{
-					reasonText: "Here is even another reason!",
+					reasonText: "All data is stored in regular JavaScript objects, so no extra data manipulation is needed between Backbone and indexedDB.",
+					date: new Date().getTime()
+				},
+				{
+					reasonText: "IndexedDB allows you to build static collection (or 'table', if you like) structures, but will take any type of input including blobs!",
+					date: new Date().getTime()
+				},
+				{
+					reasonText: "The asynchronous nature of indexedDB allows you to do all your database work in the background without ever slowing down your application.",
+					date: new Date().getTime()
+				},
+				{
+					reasonText: "Dexie.js allows you to write DB calls which are very easily read and can be understood by anyone.",
+					date: new Date().getTime()
+				},
+				{
+					reasonText: "The client does not have to install anything special in order to use indexedDB and the data store will remain intact even if the client clears all history, cache, and even 'offline data'.",
 					date: new Date().getTime()
 				}
-			])
+			]);
 		}
 	});
 });
