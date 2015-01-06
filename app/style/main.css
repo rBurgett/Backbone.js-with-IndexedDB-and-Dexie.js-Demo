@@ -1,3 +1,7 @@
 table.table thead tr th {
 	padding-top:0px;
 }
+.normal-italic {
+	font-weight: normal;
+	font-style: italic;
+}
