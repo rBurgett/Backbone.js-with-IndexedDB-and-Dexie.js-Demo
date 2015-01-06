@@ -84,9 +84,11 @@ App.Views.Reason = Backbone.View.extend({
 	insert: function() {
 		this.$container.append(this.$el);
 	},
-	events: {
-		'click .deleteReason': 'deleteReason',
-		'click .changeReason': 'changeReason'
+	events: function() {
+		return {
+			'click .deleteReason': 'deleteReason',
+			'click .changeReason': 'changeReason'
+		};
 	},
 	deleteReason: function() {
 		App.Reasons.remove(this.model);
@@ -139,6 +141,16 @@ App.Views.ChangeReason = Backbone.View.extend({
 	render: function(model) {
 		this.$el.html(this.template(this.model.attributes));
 		return this;
+	},
+	events: function() {
+		return {
+			'click #saveChanges' : 'saveChanges',
+		}
+	},
+	saveChanges: function() {
+		this.model.set({
+			reasonText: this.$('textarea').val()
+		});
 	}
 });
 
