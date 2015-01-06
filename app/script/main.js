@@ -81,7 +81,9 @@ App.Views.Reason = Backbone.View.extend({
 	events: function() {
 		return {
 			'click .deleteReason': 'deleteReason',
-			'click .changeReason': 'changeReason'
+			'click .changeReason': 'changeReason',
+			'mouseover': 'showButtons',
+			'mouseout': 'hideButtons'
 		};
 	},
 	deleteReason: function() {
@@ -92,6 +94,14 @@ App.Views.Reason = Backbone.View.extend({
 			model: this.model
 		});
 		changeReasonView.render();
+	},
+	showButtons: function() {
+		this.$('.changeReason').show();
+		this.$('.deleteReason').show();
+	},
+	hideButtons: function() {
+		this.$('.changeReason').hide();
+		this.$('.deleteReason').hide();
 	}
 });
 
