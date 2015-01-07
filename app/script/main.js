@@ -211,7 +211,7 @@ App.Views.ChangeReason = Backbone.View.extend({
 $(document).ready(function () {
 	'use strict';
 
-	App.db = new Dexie("TestDatabase2");		//Dexie initializes a new indexedDB DB named "TestDatabase2"
+	App.db = new Dexie("reasonDatabase");		//Dexie initializes a new indexedDB named "reasonDatabase"
 	App.db.version(1).stores({reasons: "++id, reasonText, date"});		//Dexie initializes a collection (or table) named 'reasons'
 	App.db.open();		//Dexie opens the DB for business!
 
