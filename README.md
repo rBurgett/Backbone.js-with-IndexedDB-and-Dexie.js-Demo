@@ -9,7 +9,7 @@ I wanted to see what it would take to build a completely client-side app with a 
 
 ###indexedDB
 
-[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) has been around since about 2010 but has only recently become a viable option for web developers. As with most new web technologies, the browsers had to catch up. IndexedDB is designed to store large amounts of data and comes with all major desktop browsers today. There is no background server or plugins necessary to use it! The syntax is quite ugly and does not make for readable code. But that's where a good abstraction layer comes in!
+[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) has been around since about 2010 but has only recently become a viable option for web developers. As with most new web technologies, the browsers had to catch up. IndexedDB is designed to store large amounts of data and comes with all major desktop browsers today. There are no background servers or plugins necessary to use it! The syntax is quite ugly and does not make for readable code, but that's where a good abstraction layer comes in!
 
 ###Dexie.js
 
@@ -17,7 +17,7 @@ I wanted to see what it would take to build a completely client-side app with a 
 
 ###Backbone.js
 
-I had heard of Backbone's [sync method](http://backbonejs.org/#Sync) and wanted to write a custom implementation which would sync data with indexedDB rather than a remote server. I found that it was much easier than I expected.
+I had heard of Backbone's [sync method](http://backbonejs.org/#Sync) and wanted to write a custom implementation which would sync data with indexedDB rather than a remote server.
 
 ###How?
 
@@ -34,13 +34,13 @@ App.db.open()
 ```
 
 ###2. Configure Backbone.sync()
-Backbone's defaul sync method takes three methods:
+Backbone's defaul sync method takes three parameters:
 
 1. method - This is a string containing a CRUD (create, read, update, delete) method.
 2. model - This is an object containing the model being acted upon.
 3. options - This is an object containing any extra parameters or callback functions.
 
-This custom sync method takes those same parameters and and syncs the data to the appropriate collection in indexedDB database.
+This custom sync method takes those same parameters and and syncs the data to the appropriate collection in the indexedDB database.
 
 ```
 Backbone.sync = function(method, model, options) {
@@ -59,7 +59,7 @@ Backbone.sync = function(method, model, options) {
 	}
 };
 ```
-More details can be found in the code comments in main.js
+More details can be found in the code comments in [main.js](https://github.com/rBurgett/Backbone.js-with-IndexedDB-and-Dexie.js-Demo/blob/master/app/script/main.js)
 
 ###3. Set Event Handlers
 
@@ -81,3 +81,7 @@ App.Reasons.on({
 	}
 });
 ```
+
+So there you have it! I put many comments in the code, so feel free to check it out. To see this is action, check out:
+
+http://ryanburgett.com/backbonedexie
