@@ -46,7 +46,7 @@ This custom sync method takes those same parameters and and syncs the data to th
 Backbone.sync = function(method, model, options) {
 	switch(method) {
 		case 'create':
-      App.db[options.dbCollection].add(_.omit(model.attributes, 'id')).then(function(key) {
+      			App.db[options.dbCollection].add(_.omit(model.attributes, 'id')).then(function(key) {
 				model.set('id', key);
 			});
 			break;
@@ -59,6 +59,25 @@ Backbone.sync = function(method, model, options) {
 	}
 };
 ```
+More details can be found in the code comments in main.js
 
 ###3. Set Event Handlers
 
+I have a collection named `Reasons` and I set it to sync any time a model is added, changed, or removed.
+
+```
+App.Reasons.on({
+	add: function (model) {
+		model.sync('create', model, {dbCollection: 'reasons'});
+		...
+	},
+	remove: function (model) {
+		model.sync('delete', model, {dbCollection: 'reasons'});
+		...
+	},
+	change: function (model) {
+		model.sync('update', model, {dbCollection: 'reasons'});
+		...
+	}
+});
+```
