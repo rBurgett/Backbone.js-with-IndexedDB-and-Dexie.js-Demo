@@ -30,7 +30,7 @@ Opening a DB using Dexie is simple. For this app, I opened a DB called `reasonDa
 ```
 App.db = new Dexie("reasonDatabase");
 App.db.version(1).stores({reasons: "++id, reasonText, date"});
-App.db.open()
+App.db.open();
 ```
 
 ###2. Configure Backbone.sync()
