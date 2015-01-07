@@ -119,10 +119,12 @@ App.Views.Reason = Backbone.View.extend({
 			'mouseout': 'hideButtons'
 		};
 	},
-	deleteReason: function() {
+	deleteReason: function(e) {
+		e.preventDefault();
 		App.Reasons.remove(this.model);
 	},
-	changeReason: function() {
+	changeReason: function(e) {
+		e.preventDefault();
 		var changeReasonView = new App.Views.ChangeReason({
 			model: this.model
 		});
