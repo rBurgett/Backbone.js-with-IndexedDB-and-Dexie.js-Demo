@@ -34,6 +34,31 @@ App.db.open()
 ```
 
 ###2. Configure Backbone.sync()
+Backbone's defaul sync method takes three methods:
+
+1. method - This is a string containing a CRUD (create, read, update, delete) method.
+2. model - This is an object containing the model being acted upon.
+3. options - This is an object containing any extra parameters or callback functions.
+
+This custom sync method takes those same parameters and and syncs the data to the appropriate collection in indexedDB database.
+
+```
+Backbone.sync = function(method, model, options) {
+	switch(method) {
+		case 'create':
+      App.db[options.dbCollection].add(_.omit(model.attributes, 'id')).then(function(key) {
+				model.set('id', key);
+			});
+			break;
+		case 'update':
+			App.db[options.dbCollection].update(model.get('id'), _.omit(model.attributes, 'id'));
+			break;
+		case 'delete':
+			App.db[options.dbCollection].delete(model.id);
+			break;
+	}
+};
+```
 
 ###3. Set Event Handlers
 
