@@ -5,7 +5,7 @@ This is a demo application to show how Backbone.js can work seamlessly with Inde
 
 ###Why?
 
-I wanted to see what it would take to build a completely client-side app with a persistent data store using only JavaScript, HTML and the browser. What I found is that it is much easier than I ever imagined!
+I wanted to see what it would take to build a completely client-side app with a persistent data store using only JavaScript, HTML, and the browser. What I found is that it is much easier than I ever imagined!
 
 ###indexedDB
 
@@ -13,7 +13,7 @@ I wanted to see what it would take to build a completely client-side app with a 
 
 ###Dexie.js
 
-[Dexie.js](https://github.com/dfahlander/Dexie.js/wiki/Dexie.js) is a very well-written JavaScript library for using indexedDB. With Dexie.js, you the developer, do not need to worry about browser inconsistencies because the library smooths over all those and provides you a simple and readable API for interacting with the DB.
+[Dexie.js](https://github.com/dfahlander/Dexie.js/wiki/Dexie.js) is a very well-written JavaScript library for using indexedDB. With Dexie.js, you do not need to worry about browser inconsistencies because the library smooths over all those and provides you a simple and readable API for interacting with the DB.
 
 ###Backbone.js
 
